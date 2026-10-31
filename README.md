@@ -369,7 +369,7 @@ Add the project's chosen license as a `LICENSE` file in the repository and updat
   <strong>Boardwalk</strong><br />
   Learn the system. Trace the signal. Understand the build.
 </p>
-
+<p align="center">  <a href="https://github.com/Devputta/Drafts-might-be-needed-/blob/main/LOGO/Gemini_Generated_Image_1ppnm1ppnm1ppnm1%20(1).jfif" target="_blank" rel="noopener noreferrer">    <img src="https://wsrv.nl/?url=raw.githubusercontent.com/Devputta/Drafts-might-be-needed-/main/LOGO/Gemini_Generated_Image_1ppnm1ppnm1ppnm1%2520(1).jfif&w=400&h=400&fit=cover&mask=circle&output=png" alt="DevPutta Logo" width="220" />  </a></p>
 <p align="center">
   <a href="https://github.com/Devputta/3D-PC">View the repository on GitHub</a>
 </p>
