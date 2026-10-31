@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Devputta/3D-PC">
-    <img src="https://raw.githubusercontent.com/Devputta/QRForge/main/QR/qrforge_1024px%20(1).png" alt="QR code for the QRForge repository" width="220" />
+    <img src="https://raw.githubusercontent.com/Devputta/3D-PC/blob/main/QR/qrforge_1024px%20(2).png" alt="QR code for the QRForge repository" width="220" />
   </a>
 </p>
 <p align="center">
