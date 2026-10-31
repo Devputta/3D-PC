@@ -1,288 +1,259 @@
-# Boardwalk — 3D PC Hardware & Networking Blueprint Explorer
+<p align="center">
+  <a href="https://github.com/Devputta/3D-PC">
+    <strong>BOARDWALK · 3D PC HARDWARE EXPLORER</strong>
+  </a>
+</p><h1 align="center">Boardwalk</h1><p align="center">
+  <strong>Explore the hardware inside a PC. Follow the data across a network.</strong><br />
+  An interactive, browser-based 3D learning workbench for computer hardware, networking, and PC assembly.
+</p><p align="center">
+  <a href="https://github.com/Devputta/3D-PC">
+    <img src="https://img.shields.io/badge/Project-3D%20Learning%20Workbench-172033" alt="3D learning workbench" />
+  </a>
+  <img src="https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=white" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178c6?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Three.js-r186-black?logo=threedotjs&logoColor=white" alt="Three.js" />
+  <img src="https://img.shields.io/badge/Vite-8-646cff?logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Tests-Vitest-brightgreen" alt="Vitest tests" />
+</p><p align="center">
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#learning-packs">Learning packs</a> ·
+  <a href="#architecture">Architecture</a> ·
+  <a href="#testing">Testing</a> ·
+  <a href="#deployment">Deployment</a>
+</p>Table of contents
+- Why Boardwalk
+- Features
+- Learning packs
+- How the 3D workbench works
+- Quick start
+- Tech stack
+- Project structure
+- Scripts
+- Testing
+- Keyboard shortcuts
+- Privacy and local data
+- Accessibility and responsive design
+- Deployment
+- Known limitations
+- Roadmap
+- Contributing
+- License
+Why Boardwalk?
+Computer hardware and networking can be difficult to understand from static diagrams alone. Boardwalk turns those concepts into an interactive space where learners can inspect components, follow simulated flows, test their knowledge, and practise assembly decisions.
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-19.0-61dafb.svg)](https://react.dev/)
-[![Three.js](https://img.shields.io/badge/Three.js-r186-black.svg)](https://threejs.org/)
-[![Vite](https://img.shields.io/badge/Vite-8.x-646cff.svg)](https://vitejs.dev/)
-[![Tests](https://img.shields.io/badge/Vitest-31%20Passing-brightgreen.svg)](https://vitest.dev/)
-[![Languages](https://img.shields.io/badge/Languages-EN%20%7C%20HI-orange.svg)](#bilingual-learning-en--hi)
+With Boardwalk, you can:
+- Rotate and inspect a 3D motherboard and its components.
+- Explode an assembly to reveal parts that are normally hidden.
+- Follow simulated data, power, and network packet journeys.
+- Learn hardware concepts through guided lessons and quizzes.
+- Practise component placement and compatibility checks in build mode.
+- Keep study notes attached to the relevant learning pack and component.
+- Switch between English and Hindi.
+Boardwalk is an educational simulator. Its visualisations and sample values are intended to explain concepts, not to replace manufacturer documentation or physical diagnostics.
 
-> **Boardwalk** is an interactive, browser-based 3D architectural exploration and learning workbench. Built with Three.js and React 19, it translates dense computer engineering concepts into tactile, explodable 3D models with real-time signal simulation, guided lessons, diagnostic quizzes, and assembly verification.
+Features
+Explore a 3D motherboard
+Inspect a desktop motherboard layout with representative components, including:
+- Intel LGA1700 CPU socket
+- Dual-channel DDR5 memory slots
+- PCIe 5.0 x16 slot and GPU
+- M.2 NVMe SSD and thermal block
+- Voltage-regulator modules and power stages
+- Platform Controller Hub (PCH)
+- ATX and CPU power connectors
+- CMOS battery, SATA ports, and rear I/O area
+The scene uses procedural geometry, component labels, circuit-trace styling, lighting, and shadows to help make the layout easier to understand.
+Explore networking equipment
+Move through a simplified network containing a client workstation, managed switch, edge router, firewall, web server, and DNS resolver. Follow the request path and connect the equipment to the OSI model, from physical connectivity through application-layer protocols.
+Explode and inspect assemblies
+Use the explode control to separate parts and reveal the structure underneath. Components and subassemblies move along configured trajectories so learners can inspect the model from different angles.
+Follow animated flows
+Data flow
+1. Storage to RAM
+2. RAM to CPU caches
+3. CPU to GPU over PCIe
+4. GPU framebuffer to display
+Power flow
+- Follow representative +12 V, +5 V, and +3.3 V power paths.
+- Inspect the role of ATX, CPU EPS, and PCIe auxiliary power connections.
+Network packet flow
+- Follow a client request through switching, routing, DNS resolution, and firewall inspection.
+These are explanatory simulations rather than electrical or packet-level measurements of a real machine.
+Learn in small steps
+Lessons are organised to introduce a concept progressively. Depending on the lesson, you can explore an overview, ports and connections, a practical example, specifications, and a short knowledge check.
+Test your understanding
+- Select components directly in the 3D scene to answer spatial questions.
+- Receive immediate feedback and a camera focus on the relevant component.
+- Build custom quizzes around selected topics.
+- Review question breakdowns and saved high scores.
+Practise PC assembly
+Build mode teaches compatibility concepts through rules such as:
+- CPU socket compatibility
+- RAM generation and notch alignment
+- Power-supply budget checks
+- Cooler and case-clearance checks
+The simulator is a learning aid; always confirm actual compatibility using the component manufacturers' specifications before purchasing or assembling hardware.
+Keep personal study notes
+- Attach notes to a learning pack and a component or lesson.
+- Keep notes separated by topic.
+- Print notes as a study guide or export them as plain text.
+- Store notes in browser storage so they remain available in that browser.
+Use Boardwalk your way
+- English and Hindi interface support
+- Fullscreen 3D workbench
+- Responsive canvas sizing
+- Light interaction controls for camera movement and scene selection
+- Keyboard shortcuts for common actions
+Learning packs
+Pack	What you can explore
+PC Hardware	Motherboard components, CPU and memory placement, storage, power delivery, GPU connectivity, and assembly compatibility
+Computer Networking	Workstations, switches, routers, firewalls, servers, DNS, and a guided view of network request paths
 
----
 
-## Table of Contents
-
-- [Why Boardwalk?](#why-boardwalk)
-- [Interactive Features](#interactive-features)
-  - [1. 3D ATX Motherboard Explorer](#1-3d-atx-motherboard-explorer)
-  - [2. 3D Networking & Rack Explorer](#2-3d-networking--rack-explorer)
-  - [3. Smooth 3D Explode Engine](#3-smooth-3d-explode-engine)
-  - [4. Animated Signal & Power Simulations](#4-animated-signal--power-simulations)
-  - [5. Progressive Disclosure Lessons](#5-progressive-disclosure-lessons)
-  - [6. 3D Spatial & Multiple-Choice Quizzes](#6-3d-spatial--multiple-choice-quizzes)
-  - [7. PC Assembly Simulator (Build Mode)](#7-pc-assembly-simulator-build-mode)
-  - [8. Scoped Personal Study Notes](#8-scoped-personal-study-notes)
-  - [9. Responsive Fullscreen Mode & Gesture Isolation](#9-responsive-fullscreen-mode--gesture-isolation)
-  - [10. Bilingual Localization (English & Hindi)](#10-bilingual-localization-english--hindi)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Testing & Quality Assurance](#testing--quality-assurance)
-- [Deployment Guide](DEPLOYMENT.md)
-- [Keyboard Shortcuts](#keyboard-shortcuts)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
-## Why Boardwalk?
-
-Learning computer hardware usually requires either sacrificing expensive physical parts or reading dry, static 2D diagrams. Boardwalk bridges this gap with a high-fidelity virtual workbench where learners can:
-- Rotate, inspect, and explode modern desktop components down to the pin-out level.
-- Trace microvolt electrical signals and gigabit PCIe data streams in real time.
-- Make mistakes in assembly (such as trying to drop an AMD CPU into an Intel socket) and learn the exact architectural reasons why they fail.
-- Build confidence before ever picking up a screwdriver.
-
----
-
-## Interactive Features
-
-### 1. 3D ATX Motherboard Explorer
-- **Components Included**: Intel LGA1700 Socket, Dual-Channel DDR5 DIMMs, PCIe 5.0 x16 Slot & GPU, M.2 PCIe 4.0 NVMe SSD with aluminum thermal block, Multiphase VRM and DrMOS power stages, Platform Controller Hub (PCH Chipset), 24-Pin ATX Main Power, CR2032 CMOS battery, SATA 6 Gb/s ports, and Backplate I/O shield.
-- **Procedural Geometry**: Custom procedural meshes rendered with realistic solder mask textures, circuit traces, silk-screen component labels, and thousands of instanced SMD surface-mount resistors/capacitors.
-- **Lighting & Shadows**: Directional key light with PCF soft shadows, ambient fill, and subtle rim highlights for realistic depth perception.
-
-### 2. 3D Networking & Rack Explorer
-- **Components Included**: Client Laptop/Workstation, 24-Port Gigabit Managed Switch, Edge Gateway Router, Perimeter Firewall Appliance, Rackmount Web Server, and Authoritative DNS Resolver.
-- **Network Architecture**: Explores the full OSI model from Layer 1 physical patch cables to Layer 7 HTTPS TLS 1.3 encrypted data streams.
-
-### 3. Smooth 3D Explode Engine
-- A dedicated slider smoothly explodes the 3D assembly outward along tuned trajectory vectors.
-- Subassemblies (such as the CPU cooler fan and VRM heat spreader blocks) lift independently to reveal underlying power chokes, thermal pads, and socket pins without collision.
-
-### 4. Animated Signal & Power Simulations
-- **Hardware Data Flow**: 4-stage data pipeline tracing video file playback:
-  1. *Storage to RAM* (NVMe SSD DMA transfer)
-  2. *RAM to CPU* (L1/L2/L3 cache line population)
-  3. *CPU to GPU* (PCIe 5.0 draw calls & vertex submission)
-  4. *GPU to Display* (Framebuffer scanout over DisplayPort)
-- **Hardware Power Flow**: Traces +12V, +5V, and +3.3V DC power distribution across EPS 8-pin, 24-pin ATX, and PCIe aux cables with real-time voltage badges.
-- **Networking Packet Flow**: Traces client web requests through switch MAC forwarding, router default gateway routing, DNS query resolution, and perimeter firewall inspection.
-
-### 5. Progressive Disclosure Lessons
-- 8 structured lessons per pack covering fundamental to advanced concepts.
-- Each lesson includes:
-  - **Overview**: High-level architectural role and exactly 3 verified technical facts.
-  - **Ports & Connections**: Interactive signal routing matrix.
-  - **Live Example**: Functional configuration or diagnostic code block with one-sentence takeaways.
-  - **Specs**: Standard industry operating numbers (voltage, frequency, bandwidth, thermal limits).
-  - **Diagnostic Quiz**: Exactly 3 knowledge-check questions with detailed explanations.
-
-### 6. 3D Spatial & Multiple-Choice Quizzes
-- **Spatial Picking**: Learners identify parts directly on the 3D canvas based on functional clues (e.g. *"Find the chip that regulates +12V down to ~1.2V core voltage"*).
-- **Direct Feedback**: Instant visual green/red feedback with camera fly-to on the target component upon answer.
-- **Custom Quiz Builder**: Filter questions to specific weak areas or components.
-- **Persistent High Scores**: Track best scores in browser storage with full question breakdowns.
-
-### 7. PC Assembly Simulator (Build Mode)
-- Test your hardware knowledge by installing components into their respective motherboard slots.
-- **Architectural Rules Enforced**:
-  - Socket keying (prevents AMD AM5 from seating in an Intel LGA1700 socket).
-  - RAM notch alignment (rejects DDR4 sticks in DDR5 slots).
-  - Power budget limits (flags high-TDP GPUs on standard power supplies).
-  - Physical clearance checks (flags tall CPU tower coolers exceeding case depth).
-
-### 8. Scoped Personal Study Notes
-- Write rich notes directly on any hardware part or lesson.
-- **Isolation**: Notes are strictly scoped by pack and component/lesson ID to prevent cross-topic pollution.
-- **Persistence**: Safely cached in memory and persisted to `localStorage` with silent error handling and automatic migration from legacy keys.
-- **Export & Print**: Full printable study guide (`Ctrl+P` / Print Notes) and formatted plain-text export.
-
-### 9. Responsive Fullscreen Mode & Gesture Isolation
-- **Fullscreen API**: Expands the 3D canvas across the entire display with graceful fallback for embedded iframes.
-- **Pointer Event Isolation**: Clicking tabs, buttons, or typing notes never accidentally drags or rotates the 3D model.
-- **Adaptive Canvas**: Uses `ResizeObserver` to smoothly update camera aspect ratios without stretching or clipping.
-
-### 10. Bilingual Localization (English & Hindi)
-- Full support for both English (`en`) and Hindi (`hi`).
-- Preserves universal engineering acronyms (CPU, RAM, PCIe, GPU, BIOS, MAC, DNS, TCP) in English script within Hindi text for technical clarity.
-- Instant, zero-reload language switching.
-
----
-
-## Tech Stack
-
-| Layer | Technology | Rationale |
-|---|---|---|
-| **Core Framework** | React 19 + TypeScript | Concurrent rendering, strict typing, functional hooks architecture |
-| **3D Engine** | Three.js (r186+) | Hardware-accelerated WebGL rendering, custom procedural meshes |
-| **Bundler** | Vite 8 | Near-instant HMR, ES module builds, optimized asset bundling |
-| **Styling** | Workbench Design System | Hand-crafted anti-static mat palette, dark ink tokens, Barlow typography |
-| **Testing** | Vitest 5 | High-speed unit & integration test runner with in-memory storage mocks |
-
----
-
-## Project Structure
-
-```text
-boardwalk/
-├── .gitattributes            # Line ending normalization and binary asset rules
-├── .gitignore                # Comprehensive Git ignore rules
-├── index.html                # HTML entry point with typography preconnects
-├── metadata.json             # Applet capabilities and identification
-├── package.json              # Dependency definitions and npm scripts
-├── tsconfig.json             # Strict TypeScript compiler options
-├── vite.config.ts            # Vite configuration
-│
-├── public/
-│   └── fonts/                # Self-hosted Barlow & Barlow Condensed WOFF2 fonts
-│
-├── src/
-│   ├── main.tsx              # Application root mount
-│   ├── App.tsx               # Primary workbench state controller
-│   ├── styles.css            # Workbench tokens, layout grid, print styles
-│   │
-│   ├── components/           # UI Component Layer
-│   │   ├── BoardView.tsx         # 3D canvas wrapper, toolbar, callouts overlay
-│   │   ├── CalloutOverlay.tsx    # Screen-space 3D floating component badges
-│   │   ├── RightColumn.tsx       # Specification sheet, tabs, note editor
-│   │   ├── LessonsStrip.tsx      # Bottom lesson ribbon with completion badges
-│   │   ├── FlowPlayerStrip.tsx   # Step-by-step signal simulation controls
-│   │   ├── NavRail.tsx           # Left pack & mode navigation rail
-│   │   ├── TopHeader.tsx         # Top bar with pack switch & language selector
-│   │   ├── CompareModal.tsx      # Side-by-side component comparison modal
-│   │   ├── CustomQuizModal.tsx   # Filtered custom quiz builder
-│   │   ├── PrintNotesView.tsx    # Clean printable study notes sheet
-│   │   └── WelcomeModal.tsx      # First-run onboarding dialog
-│   │
-│   ├── data/                 # Static Hardware & Comparison Data
-│   │   ├── parts.ts              # Component specs, numbers, failure notes
-│   │   ├── build.ts              # Assembly tray parts & compatibility rules
-│   │   └── compare.ts            # Side-by-side comparison matrices
-│   │
-│   ├── i18n/                 # Internationalization
-│   │   ├── types.ts              # Translation schema types
-│   │   ├── en.ts                 # English dictionary
-│   │   ├── hi.ts                 # Hindi dictionary
-│   │   └── index.tsx             # I18n context provider & useI18n hook
-│   │
-│   ├── lib/                  # Pure Utility Logic
-│   │   ├── quiz.ts               # Quiz state machine, randomizer, grading
-│   │   └── storage.ts            # Isolated persistent note storage
-│   │
-│   ├── packs/                # Educational Domain Packs
-│   │   ├── types.ts              # Pack, lesson, and flow schema interfaces
-│   │   ├── index.ts              # Central pack registry
-│   │   ├── hardware/             # PC Motherboard pack (3D, lessons, flows)
-│   │   └── networking/           # Computer Networking pack (3D, lessons, flows)
-│   │
-│   └── scene/                # 3D Scene Controller
-│       ├── BoardScene.ts         # Three.js renderer, OrbitControls, raycaster
-│       ├── build.ts              # Procedural geometry factory
-│       └── layout.ts             # Explode trajectories & camera presets
-│
-└── tests/                    # Automated Test Suite (Vitest)
-    ├── boardwalk.test.ts     # Core functional audit (notes, quiz, build)
-    ├── i18n.test.ts          # Localization parity & formatter validation
-    ├── flows.test.ts         # Data/power/packet flow curves & steps
-    ├── layout-scene.test.ts  # 3D explode vectors & camera presets
-    └── compare.test.ts       # Hardware comparison pair integrity
+The exact lesson and component content is maintained in the project's pack data.
+How the 3D workbench works
+At a high level, Boardwalk connects learning content to a 3D scene:
+```mermaid
+flowchart TD
+    A[Choose a learning pack or mode] --> B[Load pack data]
+    B --> C[Build the 3D scene]
+    C --> D[Select or inspect a component]
+    D --> E[Show details, lesson, or note]
+    D --> F[Run a quiz or simulation]
+    F --> G[Display feedback and progress]
 ```
-
----
-
-## Getting Started
-
-### Prerequisites
-- **Node.js**: v18.0.0 or higher
-- **npm**: v9.0.0 or higher (or `pnpm` / `bun`)
-
-### Installation & Development
-```bash
-# Clone the repository
+The React interface manages the workbench state, while Three.js renders the scene and handles camera controls and object picking. The pack data supplies the educational content, and utility modules manage quiz logic and local note storage.
+Quick start
+Requirements
+- Node.js 18 or newer
+- npm 9 or newer
+- A modern desktop or mobile browser with WebGL support
+The exact Node.js version supported by your installed Vite version may be higher. If installation or startup reports a version requirement, use a currently supported Node.js LTS release.
+Install and run
 git clone https://github.com/Devputta/3D-PC.git
 cd 3D-PC
-
-# Install dependencies
 npm install
-
-# Start local development server (runs on port 3000)
 npm run dev
-
-# Run TypeScript typecheck
+Open the local URL printed by Vite in your terminal. The development server may choose a port automatically if its default port is already in use.
+Check the project
 npm run typecheck
-
-# Run automated tests
 npm test
-
-# Build production bundle
 npm run build
-```
+If a script is not available in the current package.json, check the Scripts section below and the package configuration before running it.
+Tech stack
+Area	Technology	Role
+UI	React 19	Component-based application interface
+Language	TypeScript 5.x	Typed application and learning data
+3D rendering	Three.js	WebGL scene, camera controls, and object selection
+Build tooling	Vite 8	Development server and production bundling
+Testing	Vitest	Automated unit and integration tests
+Persistence	Browser storage	Local study notes and selected learning progress
 
----
 
-## Testing & Quality Assurance
+Project structure
+3D-PC/
+├── public/                 # Static assets, including fonts
+├── src/
+│   ├── components/         # Workbench UI and reusable interface components
+│   ├── data/               # Hardware, assembly, and comparison data
+│   ├── i18n/               # English and Hindi translations
+│   ├── lib/                # Quiz and storage utilities
+│   ├── packs/              # Hardware and networking learning packs
+│   ├── scene/              # Three.js scene and layout logic
+│   ├── App.tsx             # Main application component
+│   └── main.tsx            # Application entry point
+├── tests/                  # Automated test suites
+├── ARCHITECTURE.md         # Architecture notes
+├── CHANGELOG.md            # Project change history
+├── CONTRIBUTING.md         # Contribution guide
+├── DEPLOYMENT.md           # Deployment instructions
+├── README.md               # Project overview and setup
+├── TESTING.md              # Testing and QA guide
+├── package.json            # Dependencies and scripts
+├── tsconfig.json           # TypeScript configuration
+└── vite.config.ts          # Vite configuration
+This is a high-level overview; individual files may change as the project evolves.
+Scripts
+Run npm run to see the scripts defined in your local package.json. The project documentation describes these commands:
+Command	Purpose
+npm run dev	Start the local development server
+npm run typecheck	Run TypeScript checks
+npm test	Run the automated test suite
+npm run build	Build the production assets
 
-Boardwalk maintains a comprehensive test suite using **Vitest** with 31 passing unit and integration tests across 5 test suites:
 
-```bash
+Testing
+Run the automated tests with:
 npm test
-```
+The test suite is intended to cover key behaviour, including:
+- Study-note isolation and persistence behaviour
+- Quiz scoring and answer evaluation
+- Assembly compatibility rules
+- English/Hindi translation consistency
+- Simulated flow steps and scene layout data
+- Comparison data integrity
+For the full strategy and manual QA checklist, see [`TESTING.md`](TESTING.md).
+Keyboard shortcuts
+Shortcut	Action
+Space	Play or pause the active flow simulation
+Left Arrow / [	Previous lesson or flow step
+Right Arrow / ]	Next lesson or flow step
+F	Toggle fullscreen for the 3D canvas
+Esc	Close a dialog, exit fullscreen, or clear selection
+R	Reset the 3D camera
+Ctrl + P / Cmd + P	Open the print view for study notes
 
-### Test Coverage Highlights:
-1. **`tests/boardwalk.test.ts`**:
-   - Pack and component note isolation.
-   - Legacy note key backward compatibility.
-   - Quiz scoring, skipping, and honest answer evaluation.
-   - Build mode physical compatibility logic (socket, RAM notch, TDP, cooler clearance).
-2. **`tests/i18n.test.ts`**:
-   - Exact schema symmetry between English and Hindi translation dictionaries.
-   - Dynamic string formatting functions.
-   - 1-to-1 lesson parity between English and Hindi packs.
-3. **`tests/flows.test.ts`**:
-   - Sequential step numbering and continuous Catmull-Rom 3D splines.
-   - Active component cross-validation against the hardware catalog.
-4. **`tests/layout-scene.test.ts`**:
-   - Finite coordinates for all 3D explode trajectories and callout anchors.
-   - Valid camera presets and subassembly offsets.
-5. **`tests/compare.test.ts`**:
-   - Balanced specifications and decision criteria across comparison matrices.
 
-For full testing documentation and manual QA checklists, see [`TESTING.md`](TESTING.md).
+Shortcut availability may depend on the active view.
+Privacy and local data
+Boardwalk's study notes and related browser-side state are stored locally in browser storage. This means:
+- Data is associated with the browser and origin where you use the app.
+- Clearing site data can remove locally stored notes and progress.
+- Local browser storage is not a cloud backup or synchronisation service.
+- Avoid entering passwords, private keys, or other sensitive information into study notes.
+This README does not claim that the entire application makes no network requests; browser loading, fonts, deployment hosting, and other application resources may require network access.
+Accessibility and responsive design
+The project includes responsive canvas sizing, keyboard shortcuts, dialog interaction handling, and English/Hindi localisation. Please report any accessibility issue you encounter, including the browser and device where it occurs, so it can be reproduced and improved.
+Deployment
+Boardwalk is built with Vite and can be deployed to a static hosting provider that supports a Vite production build.
+1. Push the project to GitHub.
+2. Import the repository into your chosen hosting provider.
+3. Set the build command to npm run build.
+4. Set the publish/output directory to dist.
+5. Deploy and test the hosted application on desktop and mobile.
+For provider-specific steps and configuration, see [`DEPLOYMENT.md`](DEPLOYMENT.md).
 
----
-
-## Keyboard Shortcuts
-
-| Shortcut | Action |
-|---|---|
-| `Space` | Play / Pause animated signal or power flow |
-| `Left Arrow` / `[` | Previous lesson / journey step |
-| `Right Arrow` / `]` | Next lesson / journey step |
-| `F` | Toggle 3D canvas fullscreen mode |
-| `Esc` | Close active dialog / exit fullscreen / deselect component |
-| `R` | Reset 3D camera to default workbench angle |
-| `Ctrl + P` / `Cmd + P` | Open clean printable study notes view |
-
----
-
-## Contributing
-
-Contributions, bug reports, and educational pack proposals are warmly welcomed! Please read our [`CONTRIBUTING.md`](CONTRIBUTING.md) guide for details on code style, pack authoring, and our pull request process.
-
----
-
-## Documentation Links
-
-- [System Architecture](ARCHITECTURE.md)
-- [Deployment Guide](DEPLOYMENT.md)
-- [Testing & QA Guide](TESTING.md)
-- [Contribution Guidelines](CONTRIBUTING.md)
-- [Changelog](CHANGELOG.md)
-
----
-
-## License
-
-This project is licensed under the MIT License — see the LICENSE file for details.
+Before deploying, confirm that the configured Node.js version satisfies the version requirements of the installed Vite release.
+Known limitations
+- The 3D models are educational representations and may not match every manufacturer's exact board layout or component revision.
+- Simulated power, data, and network flows explain concepts; they do not measure a connected physical device.
+- Assembly checks cover the rules implemented in the app and cannot guarantee compatibility for every real-world build.
+- Notes and progress stored in browser storage may be lost when browser site data is cleared.
+- Printed or exported study notes should be checked before sharing if they contain personal information.
+Roadmap
+Potential areas for future improvement include:
+- Additional hardware and networking learning packs
+- More component models and guided walkthroughs
+- Expanded diagnostic scenarios and quiz questions
+- Improved mobile interaction and accessibility
+- More automated regression coverage
+Please use the repository's Issues page to discuss ideas or report bugs: https://github.com/Devputta/3D-PC/issues
+Contributing
+Contributions, bug reports, and educational content proposals are welcome.
+1. Fork the repository and create a focused branch.
+2. Make a change that fits the project's existing architecture and style.
+3. Run the relevant type checks and tests.
+4. Update documentation when behaviour or setup changes.
+5. Open a pull request describing the change and how it was verified.
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before submitting a change. Do not commit passwords, access tokens, private environment files, or other secrets.
+Security reporting
+Please do not publish sensitive vulnerability details in a public issue. Check the repository for SECURITY.md or the maintainer's preferred private reporting method before sharing details. Include reproduction steps and the affected version when possible.
+License
+Add the project's chosen license as a LICENSE file in the repository and update this section to match it. Do not assume that the project is MIT-licensed unless the repository's actual license file confirms that.
+<p align="center">
+  <strong>Boardwalk</strong><br />
+  Learn the system. Trace the signal. Understand the build.
+</p><p align="center">
+  <a href="https://github.com/Devputta/3D-PC">View the repository on GitHub</a>
+</p>
